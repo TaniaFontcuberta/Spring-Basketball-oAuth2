@@ -135,5 +135,23 @@ public class PlayerResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("player", id.toString())).build();
     }
 
+    /**
+     * GET players by Name.
+     */
+    @RequestMapping(value = "/players/byName/{name}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Player>> getPlayerByName(@PathVariable String name){
+        log.debug("REST request to get Player : {}", name);
+        List<Player> baskets =playerRepository.findByNameEquals(name);
+
+        return Optional.ofNullable(baskets)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
 
 }
