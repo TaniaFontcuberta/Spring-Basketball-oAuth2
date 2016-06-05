@@ -18,5 +18,6 @@ public interface PlayerRepository extends JpaRepository<Player,Long> {
     List<Player> findByNameEquals(String name);
     List<Player> findByBasketsGreaterThanEqual(Integer baskets);
     List<Player> findByBirthdateAfter(LocalDate birthdate);
+    List<Player> findByBirthdateBetween(LocalDate birthdate, LocalDate birthdate2);
 
 }

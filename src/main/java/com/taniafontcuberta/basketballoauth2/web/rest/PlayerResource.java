@@ -189,4 +189,22 @@ public class PlayerResource {
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    /**
+     * GET players by birthdate between 2 dates.
+     */
+    @RequestMapping(value = "/players/topBirthdateBetween/{birthdate}/{birthdate2}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Player>> getPlayersByBirthdateBetween(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate birthdate,
+                                                                     @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate birthdate2){
+        log.debug("REST request to get Jugador : {}", birthdate);
+        List<Player> player =playerRepository.findByBirthdateBetween(birthdate, birthdate2);
+
+        return Optional.ofNullable(player)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 }
