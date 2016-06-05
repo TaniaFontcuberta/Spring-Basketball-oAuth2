@@ -153,5 +153,22 @@ public class PlayerResource {
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    /**
+     * GET players by baskets.
+     */
+    @RequestMapping(value = "/players/topBaskets/{baskets}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Player>> getPlayersByBaskets(@PathVariable Integer baskets){
+        log.debug("REST request to get Jugador : {}", baskets);
+        List<Player> player =playerRepository.findByBasketsGreaterThanEqual(baskets);
+
+        return Optional.ofNullable(player)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 
 }

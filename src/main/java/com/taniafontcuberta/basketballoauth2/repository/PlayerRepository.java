@@ -15,5 +15,6 @@ import java.util.List;
 public interface PlayerRepository extends JpaRepository<Player,Long> {
 
     List<Player> findByNameEquals(String name);
+    List<Player> findByBasketsGreaterThanEqual(Integer baskets);
 
 }
