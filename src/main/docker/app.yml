@@ -1,0 +1,15 @@
+version: '2'
+services:
+    basketballoauth2-app:
+        image: basketballoauth2
+        external_links:
+            - basketballoauth2-mysql:mysql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/basketballoauth2?useUnicode=true&characterEncoding=utf8&useSSL=false
+        ports:
+            - 8080:8080
+    basketballoauth2-mysql:
+        extends:
+            file: mysql.yml
+            service: basketballoauth2-mysql

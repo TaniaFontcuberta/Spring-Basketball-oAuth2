@@ -1,0 +1,12 @@
+{
+    "basketballOauth2App": {
+        "PlayerPositions" : {
+            "null": "",
+            "PointGuard": "PointGuard",
+            "ShootingGuard": "ShootingGuard",
+            "SmallForward": "SmallForward",
+            "PowerForward": "PowerForward",
+            "Center": "Center"
+        }
+    }
+}

@@ -1,0 +1,74 @@
+<div>
+    <h2 translate="basketballOauth2App.player.home.title">Players</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="player.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="basketballOauth2App.player.home.createLabel">
+                        Create new Player
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span translate="basketballOauth2App.player.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="baskets"><span translate="basketballOauth2App.player.baskets">Baskets</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="rebounds"><span translate="basketballOauth2App.player.rebounds">Rebounds</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="assists"><span translate="basketballOauth2App.player.assists">Assists</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fieldPosition"><span translate="basketballOauth2App.player.fieldPosition">Field Position</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="birthdate"><span translate="basketballOauth2App.player.birthdate">Birthdate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="team.name"><span translate="basketballOauth2App.player.team">Team</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="player in vm.players track by player.id">
+                    <td><a ui-sref="player-detail({id:player.id})">{{player.id}}</a></td>
+                    <td>{{player.name}}</td>
+                    <td>{{player.baskets}}</td>
+                    <td>{{player.rebounds}}</td>
+                    <td>{{player.assists}}</td>
+                    <td translate="{{'basketballOauth2App.PlayerPositions.' + player.fieldPosition}}">{{player.fieldPosition}}</td>
+                        <td>{{player.birthdate | date:'mediumDate'}}</td>
+                    <td>
+                        <a ui-sref="team-detail({id:player.team.id})">{{player.team.name}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="player-detail({id:player.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="player.edit({id:player.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="player.delete({id:player.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

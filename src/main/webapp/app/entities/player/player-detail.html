@@ -1,0 +1,48 @@
+
+<div>
+    <h2><span translate="basketballOauth2App.player.detail.title">Player</span> {{vm.player.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span translate="basketballOauth2App.player.name">Name</span></dt>
+        <dd>
+            <span>{{vm.player.name}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="basketballOauth2App.player.baskets">Baskets</span></dt>
+        <dd>
+            <span>{{vm.player.baskets}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="basketballOauth2App.player.rebounds">Rebounds</span></dt>
+        <dd>
+            <span>{{vm.player.rebounds}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="basketballOauth2App.player.assists">Assists</span></dt>
+        <dd>
+            <span>{{vm.player.assists}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="basketballOauth2App.player.fieldPosition">Field Position</span></dt>
+        <dd>
+            <span translate="{{'basketballOauth2App.PlayerPositions.' + vm.player.fieldPosition}}">{{vm.player.fieldPosition}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="basketballOauth2App.player.birthdate">Birthdate</span></dt>
+        <dd>
+            <span>{{vm.player.birthdate | date:'mediumDate'}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="basketballOauth2App.player.team">Team</span></dt>
+        <dd>
+            <a ui-sref="team-detail({id:vm.player.team.id})">{{vm.player.team.name}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

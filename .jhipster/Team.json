@@ -1,0 +1,31 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "player",
+            "otherEntityName": "player",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "team"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "locality",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20160505170751",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "team",
+    "pagination": "pagination"
+}
